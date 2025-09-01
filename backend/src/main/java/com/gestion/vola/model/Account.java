@@ -25,14 +25,55 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "id_user", nullable = false)
     private User user;
-
+    
     private String accountNumber;
     private LocalDateTime accountAbonmentDate;
     private String password;
     private BigDecimal amount;
-
+    
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<Transaction> transactions;
 
-    // Getters & Setters...
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public LocalDateTime getAccountAbonmentDate() {
+        return accountAbonmentDate;
+    }
+    public void setAccountAbonmentDate(LocalDateTime accountAbonmentDate) {
+        this.accountAbonmentDate = accountAbonmentDate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
 }

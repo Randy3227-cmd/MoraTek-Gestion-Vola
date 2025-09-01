@@ -36,5 +36,60 @@ public class Transaction {
 
     private String description;
 
-    // Getters & Setters...
+    public Long getIdTransactions() {
+        return idTransactions;
+    }
+
+    public void setIdTransactions(Long idTransactions) {
+        this.idTransactions = idTransactions;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public LocalDateTime getTransactionsDate() {
+        return transactionsDate;
+    }
+
+    public void setTransactionsDate(LocalDateTime transactionsDate) {
+        this.transactionsDate = transactionsDate;
+    }
+
+    public TransactionsType getTransactionsType() {
+        return transactionsType;
+    }
+
+    public void setTransactionsType(TransactionsType transactionsType) {
+        this.transactionsType = transactionsType;
+    }
+
+    public TransactionsCategorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(TransactionsCategorie categorie) {
+        this.categorie = categorie;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }
