@@ -1,6 +1,7 @@
 package com.gestion.vola.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,28 @@ public class AccountService {
         return accountRepository.findAll();
     }
 
-    public Account fnd
+    // read by id
+    public Optional<Account> getAccountById(Long id) {
+        return accountRepository.findById(id);
+    }
+
+    // read by user
+    public List<Account> getAccountsByUser(Long idUser) {
+        return accountRepository.findByUserIdUser(idUser);
+    }
+
+    //update
+    public Account updateAccount(Long id, Account newAccount) {
+        Account account = accountRepository.findById(id).orElse(null);
+        account.setAccountNumber(newAccount.getAccountNumber());
+        account.setPassword(newAccount.getPassword());
+        account.setAmount(newAccount.getAmount());
+        return accountRepository.save(account);
+    }
+
+    //delete
+    public void deleteAccount(Long id) {
+        accountRepository.deleteById(id);
+    }
 
 }

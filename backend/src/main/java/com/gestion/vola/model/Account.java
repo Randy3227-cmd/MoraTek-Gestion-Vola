@@ -75,5 +75,9 @@ public class Account {
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
+    public Object get() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'get'");
+    }
 
 }
