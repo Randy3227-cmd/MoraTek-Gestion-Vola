@@ -16,5 +16,20 @@ public class TransactionsCategorie {
 
     private String description;
 
-    // Getters & Setters...
+    public Long getIdTransactionsCategorie() {
+        return idTransactionsCategorie;
+    }
+
+    public void setIdTransactionsCategorie(Long idTransactionsCategorie) {
+        this.idTransactionsCategorie = idTransactionsCategorie;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }

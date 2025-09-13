@@ -20,11 +20,11 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idContact;
-
+    
     @ManyToOne
     @JoinColumn(name = "id_users")
     private User user;
-
+    
     @ManyToOne
     @JoinColumn(name = "id_users_contact")
     private User contactUser;
@@ -32,5 +32,37 @@ public class Contact {
     @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL)
     private List<Pret> prets;
 
+    
     // Getters & Setters...
-}
+    public Long getIdContact() {
+        return idContact;
+        }
+        
+        public void setIdContact(Long idContact) {
+            this.idContact = idContact;
+        }
+        
+        public User getUser() {
+            return user;
+        }
+        
+        public void setUser(User user) {
+            this.user = user;
+        }
+        public User getContactUser() {
+            return contactUser;
+        }
+        
+        public void setContactUser(User contactUser) {
+            this.contactUser = contactUser;
+        }
+        
+        public List<Pret> getPrets() {
+            return prets;
+        }
+        
+        public void setPrets(List<Pret> prets) {
+            this.prets = prets;
+        }
+    }
+    

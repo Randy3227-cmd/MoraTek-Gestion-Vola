@@ -17,5 +17,20 @@ public class TransactionsType {
 
     private String description;
 
-    // Getters & Setters...
+    public Long getIdTransactionsType() {
+        return idTransactionsType;
+    }
+
+    public void setIdTransactionsType(Long idTransactionsType) {
+        this.idTransactionsType = idTransactionsType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }

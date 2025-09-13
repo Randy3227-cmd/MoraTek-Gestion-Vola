@@ -16,6 +16,21 @@ public class StatutPret {
 
     private String description;
 
-    // Getters & Setters...
+    public Long getIdStatutPret() {
+        return idStatutPret;
+    }
+
+    public void setIdStatutPret(Long idStatutPret) {
+        this.idStatutPret = idStatutPret;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }
 
