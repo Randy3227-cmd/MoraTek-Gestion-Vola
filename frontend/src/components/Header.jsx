@@ -1,5 +1,3 @@
-
-// Header.jsx
 import React from 'react';
 import { Plus } from 'lucide-react';
 
@@ -12,12 +10,12 @@ const Header = () => {
         </div>
         <div>
           <h1 className="text-xl font-bold">MoraTek</h1>
-          <p className="text-gray-400 text-sm">Mora miTantam-bola</p>
+          <p className="text-gray-400 text-sm">Gestion de mon argent</p>
         </div>
       </div>
       <button className="bg-yellow-600 hover:bg-yellow-700 text-gray-900 px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2">
         <Plus size={20} />
-        Nova transação
+        Nouvelle transaction
       </button>
     </div>
   );

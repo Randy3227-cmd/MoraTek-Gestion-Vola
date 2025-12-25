@@ -1,11 +1,9 @@
-
-// Pagination.jsx
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 
-const Pagination = ({ currentPage, totalPages }) => {
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
-  
+
   return (
     <div className="flex items-center justify-center gap-2 mt-6">
       {pages.map(page => (
@@ -16,6 +14,7 @@ const Pagination = ({ currentPage, totalPages }) => {
               ? 'bg-green-500 text-white'
               : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
           } transition-colors`}
+          onClick={() => onPageChange(page)}
         >
           {page}
         </button>

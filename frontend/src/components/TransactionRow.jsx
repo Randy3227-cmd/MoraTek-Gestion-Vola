@@ -1,4 +1,5 @@
 import React from 'react';
+
 const TransactionRow = ({ description, amount, category, date, type }) => {
   const amountColor = type === 'income' ? 'text-green-500' : 'text-red-500';
   

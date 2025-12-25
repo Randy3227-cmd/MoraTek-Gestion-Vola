@@ -8,7 +8,7 @@ const SummaryCard = ({ title, amount, type, icon }) => {
       case 'expense':
         return 'bg-gray-800 border-red-500';
       case 'total':
-        return 'bg-yellow-600';
+        return 'bg-yellow-500 border-yellow-700';
       default:
         return 'bg-gray-800';
     }

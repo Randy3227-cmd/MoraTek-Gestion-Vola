@@ -1,30 +1,62 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import SummaryCard from './components/SummaryCard';
 import SearchBar from './components/SearchBar';
 import TransactionList from './components/TransactionList';
+import TransactionRow from './components/TransactionRow';
+import Pagination from './components/Pagination';
+import { Plus, Search } from 'lucide-react';
 
-const App = () => {
-  // Données mockées pour l'affichage
-  const summary = {
-    income: 'R$ 17.400,00',
-    expense: 'R$ 1.259,00',
-    total: 'R$ 16.141,00'
+const TableauDeBordFinancier = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [transactions, setTransactions] = useState([]);
+  const [summary, setSummary] = useState({
+    income: 0,
+    expense: 0,
+    total: 0
+  });
+
+  // Simulation de données
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const mockData = [
+      { id: 1, description: 'Développement de site', amount: 'R$ 12.000,00', category: 'Vente', date: '13/04/2022', type: 'income' },
+      { id: 2, description: 'Hamburger', amount: 'R$ 59,00', category: 'Alimentation', date: '10/04/2022', type: 'expense' },
+      { id: 3, description: "Loyer de l'appartement", amount: 'R$ 1.200,00', category: 'Maison', date: '27/03/2022', type: 'expense' },
+      { id: 4, description: 'Ordinateur', amount: 'R$ 5.400,00', category: 'Vente', date: '15/03/2022', type: 'income' },
+      { id: 5, description: 'Développement de site', amount: 'R$ 8.000,00', category: 'Vente', date: '13/03/2022', type: 'income' },
+      { id: 6, description: 'Dîner', amount: 'R$ 59,00', category: 'Alimentation', date: '10/03/2022', type: 'expense' },
+      { id: 7, description: "Loyer de l'appartement", amount: 'R$ 1.200,00', category: 'Maison', date: '27/02/2022', type: 'expense' },
+      { id: 8, description: 'Salaire', amount: 'R$ 5.400,00', category: 'Salaire', date: '15/02/2022', type: 'income' },
+      { id: 9, description: 'Déjeuner', amount: 'R$ 59,00', category: 'Alimentation', date: '05/02/2022', type: 'expense' },
+      { id: 10, description: 'Source de revenus', amount: 'R$ 150,00', category: 'Revenu', date: '02/02/2022', type: 'income' },
+    ];
+
+    setTransactions(mockData);
+
+    // Calcul du résumé
+    const income = mockData
+      .filter(t => t.type === 'income')
+      .reduce((sum, t) => sum + parseFloat(t.amount.replace('R$ ', '').replace('.', '').replace(',', '.')), 0);
+    
+    const expense = mockData
+      .filter(t => t.type === 'expense')
+      .reduce((sum, t) => sum + parseFloat(t.amount.replace('R$ ', '').replace('.', '').replace(',', '.')), 0);
+
+    setSummary({
+      income: income.toLocaleString('fr-FR', { style: 'currency', currency: 'BRL' }),
+      expense: expense.toLocaleString('fr-FR', { style: 'currency', currency: 'BRL' }),
+      total: (income - expense).toLocaleString('fr-FR', { style: 'currency', currency: 'BRL' })
+    });
   };
 
-  const transactions = [
-    { id: 1, description: 'Desenvolvimento de site', amount: 'R$ 12.000,00', category: 'Venda', date: '13/04/2022', type: 'income' },
-    { id: 2, description: 'Hambúrguer', amount: 'R$ 59,00', category: 'Alimentação', date: '10/04/2022', type: 'expense' },
-    { id: 3, description: 'Aluguel do apartamento', amount: 'R$ 1.200,00', category: 'Casa', date: '27/03/2022', type: 'expense' },
-    { id: 4, description: 'Computador', amount: 'R$ 5.400,00', category: 'Venda', date: '15/03/2022', type: 'income' },
-    { id: 5, description: 'Desenvolvimento de site', amount: 'R$ 8.000,00', category: 'Venda', date: '13/03/2022', type: 'income' },
-    { id: 6, description: 'Janta', amount: 'R$ 59,00', category: 'Alimentação', date: '10/03/2022', type: 'expense' },
-    { id: 7, description: 'Aluguel do apartamento', amount: 'R$ 1.200,00', category: 'Casa', date: '27/02/2022', type: 'expense' },
-    { id: 8, description: 'Salário', amount: 'R$ 5.400,00', category: 'Salário', date: '15/02/2022', type: 'income' },
-    { id: 9, description: 'Almoço', amount: 'R$ 59,00', category: 'Alimentação', date: '05/02/2022', type: 'expense' },
-    { id: 10, description: 'Fonte de renda', amount: 'R$ 150,00', category: 'Renda', date: '02/02/2022', type: 'income' },
-  ];
+  const filteredTransactions = transactions.filter(t =>
+    t.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
@@ -34,13 +66,13 @@ const App = () => {
         {/* Cartes de résumé */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <SummaryCard
-            title="Entradas"
+            title="Entrées"
             amount={summary.income}
             type="income"
             icon={<div className="w-8 h-8 bg-green-500 bg-opacity-20 rounded-full flex items-center justify-center">↑</div>}
           />
           <SummaryCard
-            title="Saídas"
+            title="Sorties"
             amount={summary.expense}
             type="expense"
             icon={<div className="w-8 h-8 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center">↓</div>}
@@ -53,11 +85,22 @@ const App = () => {
           />
         </div>
 
-        <SearchBar />
-        <TransactionList transactions={transactions} />
+        {/* Barre de recherche */}
+        <SearchBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
+
+        {/* Liste des transactions */}
+        <TransactionList
+          transactions={filteredTransactions}
+          currentPage={currentPage}
+          totalPages={3}
+          onPageChange={setCurrentPage}
+        />
       </div>
     </div>
   );
 };
 
-export default App;
+export default TableauDeBordFinancier;
