@@ -1,22 +1,26 @@
-function Header() {
-    return (
-      <header className="flex justify-between items-center p-4 bg-gray-800">
-        <h1 className="text-teal-400 text-xl font-bold"><img
-          src="https://via.placeholder.com/40"
-          alt=""
-          className="w-10 h-10 rounded-full"
-        />Mora miTantam-bola</h1>
-        <button className="bg-yellow-500 text-black px-4 py-2 rounded-lg">
-          Nouvelle transaction
-        </button>
-        <img
-          src="https://via.placeholder.com/40"
-          alt="profile"
-          className="w-10 h-10 rounded-full"
-        />
-      </header>
-    );
-  }
-  
-  export default Header;
-  
+
+// Header.jsx
+import React from 'react';
+import { Plus } from 'lucide-react';
+
+const Header = () => {
+  return (
+    <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center">
+          <span className="text-white font-bold">M</span>
+        </div>
+        <div>
+          <h1 className="text-xl font-bold">MoraTek</h1>
+          <p className="text-gray-400 text-sm">Mora miTantam-bola</p>
+        </div>
+      </div>
+      <button className="bg-yellow-600 hover:bg-yellow-700 text-gray-900 px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2">
+        <Plus size={20} />
+        Nova transação
+      </button>
+    </div>
+  );
+};
+
+export default Header;
