@@ -5,7 +5,7 @@ import java.util.List;
 
 // ==================== USERS ====================
 @Entity
-@Table(name = "USERS")
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

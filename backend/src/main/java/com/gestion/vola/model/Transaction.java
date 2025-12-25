@@ -11,13 +11,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+
 // ==================== TRANSACTIONS ====================
 @Entity
-@Table(name = "TRANSACTIONS")
-public class Transaction {
+@Table(name = "transaction")
+public class Transaction extends Categorie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTransactions;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "id_account")
@@ -36,12 +37,16 @@ public class Transaction {
 
     private String description;
 
-    public Long getIdTransactions() {
-        return idTransactions;
+    @ManyToOne
+    @JoinColumn(name = "id_statut_transaction")
+    private StatutTransaction statutTransaction;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setIdTransactions(Long idTransactions) {
-        this.idTransactions = idTransactions;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Account getAccount() {
@@ -90,6 +95,14 @@ public class Transaction {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public StatutTransaction getStatutTransaction() {
+        return statutTransaction;
+    }
+
+    public void setStatutTransaction(StatutTransaction statutTransaction) {
+        this.statutTransaction = statutTransaction;
     }
 
 }

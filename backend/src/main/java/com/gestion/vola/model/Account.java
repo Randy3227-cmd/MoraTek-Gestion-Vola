@@ -16,11 +16,11 @@ import jakarta.persistence.Table;
 
 // ==================== ACCOUNT ====================
 @Entity
-@Table(name = "ACCOUNT")
+@Table(name = "account")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idAccount;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "id_user", nullable = false)

@@ -13,16 +13,18 @@ import jakarta.persistence.Table;
 
 // ==================== PRET ====================
 @Entity
-@Table(name = "PRET")
+@Table(name = "pret")
 public class Pret {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPret;
+    private Long id;
     
     private String adressed;
     private BigDecimal amount;
     private LocalDateTime dateEmprunt;
     private LocalDateTime dateRetourPrevue;
+    private LocalDateTime dateRetourEffective;
+    private BigDecimal interestRate;
 
     @ManyToOne
     @JoinColumn(name = "id_statut_pret")
@@ -34,12 +36,12 @@ public class Pret {
 
     // Getters & Setters...
     
-        public Long getIdPret() {
-            return idPret;
+        public Long getId() {
+            return id;
         }
     
-        public void setIdPret(Long idPret) {
-            this.idPret = idPret;
+        public void setId(Long id) {
+            this.id = id;
         }
 
         public String getAdressed() {
@@ -88,5 +90,21 @@ public class Pret {
 
         public void setContact(Contact contact) {
             this.contact = contact;
+        }
+
+        public LocalDateTime getDateRetourEffective() {
+            return dateRetourEffective;
+        }
+
+        public void setDateRetourEffective(LocalDateTime dateRetourEffective) {
+            this.dateRetourEffective = dateRetourEffective;
+        }
+
+        public BigDecimal getInterestRate() {
+            return interestRate;
+        }
+
+        public void setInterestRate(BigDecimal interestRate) {
+            this.interestRate = interestRate;
         }
 }

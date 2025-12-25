@@ -57,4 +57,12 @@ public class AccountService {
         accountRepository.deleteById(id);
     }
 
+    public Account updateAccountAmount(Long accountId, Double amount) {
+        Account account = accountRepository.findById(accountId)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+        account.setAmount(account.getAmount().add(java.math.BigDecimal.valueOf(amount)));
+        return accountRepository.save(account);
+    }
+
+
 }

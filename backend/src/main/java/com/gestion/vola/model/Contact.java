@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idContact;
+    private Long id;
     
     @ManyToOne
     @JoinColumn(name = "id_users")
@@ -34,12 +34,12 @@ public class Contact {
 
     
     // Getters & Setters...
-    public Long getIdContact() {
-        return idContact;
+    public Long getId() {
+        return id;
         }
-        
-        public void setIdContact(Long idContact) {
-            this.idContact = idContact;
+
+        public void setId(Long id) {
+            this.id = id;
         }
         
         public User getUser() {
