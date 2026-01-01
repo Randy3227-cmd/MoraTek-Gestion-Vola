@@ -8,7 +8,7 @@ const SummaryCard = ({ title, amount, type, icon }) => {
       case 'expense':
         return 'bg-gray-800 border-red-500';
       case 'total':
-        return 'bg-yellow-500 border-yellow-700';
+        return 'bg-[#D2B55B] border-yellow-700';
       default:
         return 'bg-gray-800';
     }
@@ -26,7 +26,13 @@ const SummaryCard = ({ title, amount, type, icon }) => {
   return (
     <div className={`${getColorClasses()} rounded-lg p-6 border-l-4`}>
       <div className="flex items-center justify-between mb-2">
-        <span className="text-gray-400 text-sm">{title}</span>
+        <span
+          className={`text-sm ${
+            title === 'Total' ? 'text-black' : 'text-gray-400'
+          }`}
+        >
+          {title}
+        </span>
         <div className={`${getIconColor()}`}>{icon}</div>
       </div>
       <div className={`text-2xl font-bold ${type === 'total' ? 'text-gray-900' : 'text-white'}`}>
